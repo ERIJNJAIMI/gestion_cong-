@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Home page user</title>
+<style>
+    .body{
+        background-color: #EEF5FF;
+    }
+
+    .navbar {
+            background-color: #EEF5FF;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar-nav li {
+            margin-right: 15px;
+        }
+        .navbar-nav li a {
+            color: black;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-nav li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    .tableau{
+        background-color: #F2F1EB;
+        width: 50%; 
+        height: 500px;
+        border-collapse: collapse; 
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+    .tableau td{
+      padding: 25px;
+      border: 1px solid #ddd;
+      width: 50%;
+      
+    }
+    .coordonnées{
+            transform: translateY(5px);
+            margin-left: 380px;
+        }
+        .salutation, .contenu {
+            background-color: #F2F1EB;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contenu {
+            max-width: 1000px;
+            height: auto;
+        }
+</style>
+</head>
+<body class="body">
+    <nav class="navbar">
+        <div class="navbar-brand">
+          <img src="chemin/vers/le/logo.png" alt="" height="40">
+        </div>
+        <ul class="navbar-nav">
+          <li><a href="#">Accueil</a></li>
+          <li><a href="/demandeconge">Demander un congé</a></li>
+          <li><a href="/mesdemandes">Mes demandes</a></li>
+          <li><a href="/logout">Quitter</a><i class="fa-solid fa-arrow-right-from-bracket"></i></li>
+        </ul>
+      </nav>
+    <hr> 
+    <div class="salutation">
+      <h1><em>Bonjour, j’espère que vous allez bien!</em></h1>
+  </div>
+    <div class="coordonnées">
+      <h3>Mes coordonnées</h3>
+  </div>
+  <table class="tableau">
+    <tr>
+        <td>CIN</td>
+        <td>{{ user_info.cin }}</td>
+    </tr>
+    <tr>
+        <td>Nom</td>
+        <td>{{ user_info.nom }}</td>
+    </tr>
+    <tr>
+        <td>Prénom</td>
+        <td>{{ user_info.prenom }}</td>
+    </tr>
+    <tr>
+        <td>utilisateur</td>
+        <td>{{ user_info.utilisateur }}</td>
+    </tr>
+    <tr>
+        <td>Matricule</td>
+        <td>{{ user_info.matricule }}</td>
+    </tr>
+ 
+    <tr>
+        <td>JrsTotal</td>
+        <td>{{ user_info.jrs_total }}</td>
+    </tr>
+    <tr>
+        <td>JrsRestant</td>
+        <td>{{ user_info.jrs_restant }}</td>
+    </tr>
+</table>
+    
+</body>
+</html>
