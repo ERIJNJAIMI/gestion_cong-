@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>page login</title>
+    <style>
+        .login {
+            background: #EEF5FF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 500px 0 229px 0;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .login .container {
+            width: 700px;
+            height: 90px;
+            background-color: #3498db;
+            margin-top: -200px;
+        }
+        .login .container .identification {
+            font-family: 'Inter';
+            font-weight: 400;
+            font-size: 36px;
+            color: black;
+            margin-left: 7%;
+            margin-top: 4%;
+        }
+        .utilisateur {
+            font-weight: 400;
+            font-size: 20px;
+            color: black;
+            position: relative;
+            top: -60%;
+            left: -70%;
+            margin-top: 40px;
+        }
+        .mot-de-passe {
+            font-weight: 400;
+            font-size: 20px;
+            color: black;
+            position: relative;
+            top: -30%;
+            left: -70%;
+            margin-top: 5px;
+        }
+        .container-4 {
+            flex-direction: column;
+            padding: 20px;
+            top: -30%;
+            left: -100%;
+            margin-top: -33%;
+            margin-left: 50%;
+            margin-bottom: 10px;
+        }
+        .user {
+            margin-left: 90%;
+            margin-top: -6%;
+            font-size: 250%;
+        }
+        .boutton {
+            position: relative;
+            top: 15px;
+            left: -6px;
+            width: 200px;
+            height: 50px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .boutton button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: inherit;
+            cursor: pointer;
+            outline: none;
+            width: 100%;
+            height: 100%;
+        }
+        .boutton button:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .container-3 {
+            width: 700px;
+            height: 250px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container-2 {
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <div class="container">
+            <div class="identification">
+                Identification
+            </div>
+            <div class="user">
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+        <div class="container-3">
+            <div class="container-1">
+                <div class="utilisateur">
+                    Utilisateur:
+                </div>
+                <div class="mot-de-passe">
+                    Mot de passe:
+                </div>
+                <div class="container-4">
+                    <div class="formulaire">
+                      <form action="/auth" method="POST">
+                        <div class="rectangle-3">
+                            <input type="text" name="username" placeholder="Utilisateur">
+                        </div>
+                        <div class="rectangle-2">
+                            <input type="password" name="password" placeholder="Mot de passe">
+                        </div>
+                        <button class="boutton" type="submit">Connexion</button>
+                    </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

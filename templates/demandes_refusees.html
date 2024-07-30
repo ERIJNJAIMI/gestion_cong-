@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Demandes refusées</title>
+    <style>
+        body {
+            background-color: #EEF5FF;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #EEF5FF;
+            color: black; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav {
+            list-style-type: none; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar-nav li {
+            margin-right: 15px; 
+        }
+        .navbar-nav li a {
+            color: black;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; 
+        }
+        .navbar-nav li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .salutation {
+            background-color: #F2F1EB;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+            text-align: center;
+            width: 80%; 
+            height: 10%;
+            max-width: 800px; 
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center; 
+            margin: 20px; 
+            margin-top: 50px;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .button {
+            flex: 1; 
+            padding: 15px; 
+            margin: 10px; 
+            background-color: #F2F1EB;
+            color: black;
+            text-align: center; 
+            border: 1px solid #ddd; 
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #e0e0e0;
+        }
+        .table-container {
+            width: 80%;
+            margin: 20px auto; 
+        }
+        .tableau {
+            width: 100%; 
+            border-collapse: collapse;
+            background-color: #F2F1EB;
+        }
+        .tableau th, .tableau td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .tableau th {
+            background-color: #F2F1EB;
+        }
+        .action-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .action-cell h4 {
+            margin-bottom: 10px;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 200px; 
+            margin-bottom: 10px;
+        }
+        .boutton {
+            background-color: #F2F1EB;
+            color: black; 
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+    </style>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="" alt="" height="40">
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="{{ url_for('homepage_admin') }}">Accueil</a></li>
+            <li><a href="/toutes_les_demandes">Liste des demandes</a></li>
+            <li><a href="{{ url_for('ajouter_employe') }}">Ajouter un employé</a></li>
+            <li><a href="{{ url_for('list_employees') }}">Liste des employées</a></li>
+            <li><a href="/">Quitter</a><i class="fa-solid fa-arrow-right-from-bracket"></i></li>
+        </ul>
+    </nav>
+    <hr>
+    
+    <div class="container">
+        <div class="button" onclick="navigateTo('/toutes_les_demandes')">
+            <h3>Toutes les demandes</h3>
+        </div>
+        <div class="button" onclick="navigateTo('/demandes_acceptees')">
+            <h3>Demandes acceptées</h3>
+        </div>
+        <div class="button" onclick="navigateTo('/demandes_refusees')">
+            <h3>Demandes refusées</h3>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="tableau">
+            <thead>
+                <tr>
+                    <th>Personnel</th>
+                    <th>Date début</th>
+                    <th>Date retour</th>
+                    <th>NbJrs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request.username }}</td>
+                    <td>{{ request.start_date }}</td>
+                    <td>{{ request.end_date }}</td>
+                    <td>{{ request.duration }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

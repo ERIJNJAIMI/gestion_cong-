@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Liste des employés</title>
+    <style>
+        body {
+            background-color: #EEF5FF;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #EEF5FF;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar-nav li {
+            margin-right: 15px;
+        }
+        .navbar-nav li a {
+            color: black;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-nav li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .coordonnées {
+            margin: 20px auto;
+            text-align: center;
+        }
+        .tableau {
+            background-color: #F2F1EB;
+            width: 80%; 
+            border-collapse: collapse; 
+            margin: 20px auto;
+        }
+        .tableau th, .tableau td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .tableau tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        @media screen and (max-width: 768px) {
+            .tableau {
+                width: 100%;
+            }
+            .tableau th, .tableau td {
+                font-size: 12px;
+            }
+        }
+        .flashes {
+            list-style-type: none;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .flashes li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .error {
+            background-color: #ffb3b3;
+        }
+        .success {
+            background-color: #b3ffb3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="chemin/vers/le/logo.png" alt="Logo" height="40">
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="{{ url_for('homepage_admin') }}">Accueil</a></li>
+            <li><a href="/toutes_les_demandes">Liste des demandes</a></li>
+            <li><a href="{{ url_for('ajouter_employe') }}">Ajouter un employé</a></li>
+            <li><a href="{{ url_for('list_employees') }}">Liste des employés</a></li>
+            <li><a href="{{ url_for('logout') }}">Quitter</a><i class="fas fa-arrow-right-from-bracket"></i></li>
+        </ul>
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div class="coordonnées">
+        <h3>Liste des employés</h3>
+    </div>
+    <table class="tableau">
+        <thead>
+            <tr>
+                <th>CIN</th>
+                <th>Matricule</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Responsable</th>
+                <th>Utilisateur</th>
+                <th>Adresse</th>
+                <th>Date de naissance</th>
+                <th>Date de début</th>
+                <th>Nom entité</th>
+                <th>ID Service</th>
+                <th>ID Type Employé</th>
+                <th>Jours Total</th>
+                <th>Jours Restant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.cin }}</td>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.nom }}</td>
+                <td>{{ employee.prenom }}</td>
+                <td>{{ employee.responsable }}</td>
+                <td>{{ employee.username }}</td>
+                <td>{{ employee.adresse }}</td>
+                <td>{{ employee.date_naiss }}</td>
+                <td>{{ employee.date_debut }}</td>
+                <td>{{ employee.nom_entite }}</td>
+                <td>{{ employee.id_service }}</td>
+                <td>{{ employee.id_type_emp }}</td>
+                <td>{{ employee.jrs_total }}</td>
+                <td>{{ employee.jrs_restant }}</td>
+                <td>
+                    <a href="{{ url_for('edit_employee', emp_id=employee.id) }}">Éditer</a> |
+                    <a href="{{ url_for('delete_employee', emp_id=employee.id) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?')">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

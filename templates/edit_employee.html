@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Formulaire d'employé</title>
+    <style>
+        body {
+            background-color: #EEF5FF;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #EEF5FF;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .navbar-nav li {
+            margin-right: 15px;
+        }
+        .navbar-nav li a {
+            color: black;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .navbar-nav li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .box {
+            background-color: #F2F1EB;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin: 20px auto;
+            width: 50%;
+            max-width: 600px;
+            text-align: center;
+        }
+        .box i {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin-top: 10px;
+            text-align: left;
+            width: 100%;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="" alt="" height="40">
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="{{ url_for('homepage_admin') }}">Accueil</a></li>
+            <li><a href="/toutes_les_demandes">Liste des demandes</a></li>
+            <li><a href="{{ url_for('ajouter_employe') }}">Ajouter un employé</a></li>
+            <li><a href="{{ url_for('list_employees') }}">Liste des employées</a></li>
+            <li><a href="/">Quitter</a><i class="fa-solid fa-arrow-right-from-bracket"></i></li>
+        </ul>
+    </nav>
+    <hr>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <div class="box">
+        <i class="fa-solid fa-file-user"></i>
+        <form action="{{ url_for('edit_employee', emp_id=employee.id) }}" method="POST">
+            <label for="cin">CIN</label>
+            <input type="text" id="cin" name="cin"  value="{{employee.cin}}" required>
+
+            <label for="ID">Matricule</label>
+            <input type="text" id="id" name="id"  value="{{employee.id}}" required>
+            
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" value="{{employee.nom}}" required>
+            
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" value="{{employee.prenom}}" required>
+            
+            <label for="responsable">Responsable</label>
+            <input type="text" id="responsable" name="responsable" value="{{employee.responsable}}" required>
+            
+            <label for="login">Utilisateur</label>
+            <input type="text" id="utilisaateur" name="utilisateur" value="{{employee.utilisateur}}" required>
+            
+            <label for="password">Mot de passe</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe" required>
+            
+            <label for="adresse">Adresse</label>
+            <input type="text" id="adresse" name="adresse" value="{{employee.adresse}}" required>
+            
+            <label for="date_naiss">Date de naissance</label>
+            <input type="date" id="date_naiss" name="date_naiss"  value="{{employee.date_naiss}}" required>
+            
+            <label for="date_debut">Date de début</label>
+            <input type="date" id="date_debut" name="date_debut" value="{{employee.date_debut}}"  required>
+            
+            <label for="nom_entite">Nom entité</label>
+            <input type="text" id="nom_entite" name="nom_entite" value="{{employee.nom_entite}}" required>
+            
+            <label for="id_service">ID Service</label>
+            <input type="text" id="id_service" name="id_service" value="{{employee.id_service}}" required>
+            
+            <label for="id_type_emp">ID Type Employé</label>
+            <input type="text" id="id_type_emp" name="id_type_emp" value="{{employee.id_type_emp}}" required>
+
+            <label for="jrs_total">Jours Total</label>
+            <input type="number" id="jrs_total" name="jrs_total" value="{{employee.jrs_total}}" required>
+
+            <label for="jrs_restant">Jours Restant</label>
+            <input type="number" id="jrs_restant" name="jrs_restant" value="{{employee.jrs_restant}}" required>
+            
+            <button type="submit">Enregistrer les modifications</button>
+        </form>
+    </div>
+</body>
+</html>
